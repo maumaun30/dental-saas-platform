@@ -1,0 +1,26 @@
+{
+  "name": "@ohif/extension-dental",
+  "version": "3.12.4",
+  "description": "Dental Mode extension: measurements palette, dental 2x2 hanging protocol, tooth selector, theme toggle, and backend-backed viewer state.",
+  "author": "Dental SaaS",
+  "license": "MIT",
+  "main": "src/index.tsx",
+  "module": "src/index.tsx",
+  "engines": {
+    "node": ">=14"
+  },
+  "keywords": [
+    "ohif-extension"
+  ],
+  "peerDependencies": {
+    "@ohif/core": "3.12.4",
+    "@ohif/extension-cornerstone": "3.12.4",
+    "@ohif/extension-default": "3.12.4",
+    "@ohif/ui-next": "3.12.4",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.28.2"
+  }
+}

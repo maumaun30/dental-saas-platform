@@ -1,0 +1,23 @@
+node_modules/
+dist/
+build/
+.verify/
+*.log
+.DS_Store
+
+# Nx cache (Viewers monorepo)
+.nx/
+
+# OHIF's own documentation site (~60MB of assets, not needed to build/run the viewer)
+Viewers/platform/docs/
+
+# Backend runtime data (lowdb) and secrets
+backend/data/
+**/.env
+.env
+*.env
+!*.env.example
+
+# Editor
+.vscode/
+.idea/

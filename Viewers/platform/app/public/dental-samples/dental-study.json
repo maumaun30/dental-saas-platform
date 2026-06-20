@@ -1,0 +1,218 @@
+{
+  "studies": [
+    {
+      "StudyInstanceUID": "1.2.826.0.1.3680043.10.1338.1.20260617",
+      "StudyDescription": "Dental Panoramic + Bitewings",
+      "StudyDate": "20260617",
+      "StudyTime": "093000",
+      "PatientName": "John Doe",
+      "PatientID": "DEN-000142",
+      "AccessionNumber": "DENT-20260617",
+      "Modalities": "IO,PX",
+      "NumInstances": 3,
+      "series": [
+        {
+          "SeriesInstanceUID": "1.2.826.0.1.3680043.8.498.86930751881869998486757695792264418855",
+          "SeriesNumber": 1,
+          "SeriesDescription": "Panoramic",
+          "Modality": "PX",
+          "instances": [
+            {
+              "metadata": {
+                "SOPInstanceUID": "1.2.826.0.1.3680043.8.498.29924931361184225492435569265908440791",
+                "SOPClassUID": "1.2.840.10008.5.1.4.1.1.7",
+                "SeriesInstanceUID": "1.2.826.0.1.3680043.8.498.86930751881869998486757695792264418855",
+                "StudyInstanceUID": "1.2.826.0.1.3680043.10.1338.1.20260617",
+                "PatientName": "John Doe",
+                "PatientID": "DEN-000142",
+                "PatientBirthDate": "19890214",
+                "PatientSex": "M",
+                "StudyDate": "20260617",
+                "StudyDescription": "Dental Panoramic + Bitewings",
+                "Modality": "PX",
+                "SeriesNumber": 1,
+                "SeriesDescription": "Panoramic",
+                "InstanceNumber": 1,
+                "Rows": 437,
+                "Columns": 767,
+                "SamplesPerPixel": 1,
+                "PhotometricInterpretation": "MONOCHROME2",
+                "BitsAllocated": 8,
+                "BitsStored": 8,
+                "HighBit": 7,
+                "PixelRepresentation": 0,
+                "PixelSpacing": [
+                  0.143,
+                  0.143
+                ],
+                "ImagerPixelSpacing": [
+                  0.143,
+                  0.143
+                ],
+                "WindowCenter": 128,
+                "WindowWidth": 256,
+                "RescaleIntercept": 0,
+                "RescaleSlope": 1
+              },
+              "url": "dicomweb:/dental-samples/panoramic.dcm"
+            }
+          ]
+        },
+        {
+          "SeriesInstanceUID": "1.2.826.0.1.3680043.8.498.34828852771488740390494718614373282792",
+          "SeriesNumber": 2,
+          "SeriesDescription": "Bitewing Left",
+          "Modality": "IO",
+          "instances": [
+            {
+              "metadata": {
+                "SOPInstanceUID": "1.2.826.0.1.3680043.8.498.89332673086487394057654901036229830336",
+                "SOPClassUID": "1.2.840.10008.5.1.4.1.1.7",
+                "SeriesInstanceUID": "1.2.826.0.1.3680043.8.498.34828852771488740390494718614373282792",
+                "StudyInstanceUID": "1.2.826.0.1.3680043.10.1338.1.20260617",
+                "PatientName": "John Doe",
+                "PatientID": "DEN-000142",
+                "PatientBirthDate": "19890214",
+                "PatientSex": "M",
+                "StudyDate": "20260617",
+                "StudyDescription": "Dental Panoramic + Bitewings",
+                "Modality": "IO",
+                "SeriesNumber": 2,
+                "SeriesDescription": "Bitewing Left",
+                "InstanceNumber": 1,
+                "Rows": 1381,
+                "Columns": 1800,
+                "SamplesPerPixel": 1,
+                "PhotometricInterpretation": "MONOCHROME2",
+                "BitsAllocated": 8,
+                "BitsStored": 8,
+                "HighBit": 7,
+                "PixelRepresentation": 0,
+                "PixelSpacing": [
+                  0.085,
+                  0.085
+                ],
+                "ImagerPixelSpacing": [
+                  0.085,
+                  0.085
+                ],
+                "WindowCenter": 128,
+                "WindowWidth": 256,
+                "RescaleIntercept": 0,
+                "RescaleSlope": 1
+              },
+              "url": "dicomweb:/dental-samples/bitewing-left.dcm"
+            }
+          ]
+        },
+        {
+          "SeriesInstanceUID": "1.2.826.0.1.3680043.8.498.2146232042443982690426121378735391413",
+          "SeriesNumber": 3,
+          "SeriesDescription": "Bitewing Right",
+          "Modality": "IO",
+          "instances": [
+            {
+              "metadata": {
+                "SOPInstanceUID": "1.2.826.0.1.3680043.8.498.88719145480097785277502534072846615906",
+                "SOPClassUID": "1.2.840.10008.5.1.4.1.1.7",
+                "SeriesInstanceUID": "1.2.826.0.1.3680043.8.498.2146232042443982690426121378735391413",
+                "StudyInstanceUID": "1.2.826.0.1.3680043.10.1338.1.20260617",
+                "PatientName": "John Doe",
+                "PatientID": "DEN-000142",
+                "PatientBirthDate": "19890214",
+                "PatientSex": "M",
+                "StudyDate": "20260617",
+                "StudyDescription": "Dental Panoramic + Bitewings",
+                "Modality": "IO",
+                "SeriesNumber": 3,
+                "SeriesDescription": "Bitewing Right",
+                "InstanceNumber": 1,
+                "Rows": 1380,
+                "Columns": 1800,
+                "SamplesPerPixel": 1,
+                "PhotometricInterpretation": "MONOCHROME2",
+                "BitsAllocated": 8,
+                "BitsStored": 8,
+                "HighBit": 7,
+                "PixelRepresentation": 0,
+                "PixelSpacing": [
+                  0.085,
+                  0.085
+                ],
+                "ImagerPixelSpacing": [
+                  0.085,
+                  0.085
+                ],
+                "WindowCenter": 128,
+                "WindowWidth": 256,
+                "RescaleIntercept": 0,
+                "RescaleSlope": 1
+              },
+              "url": "dicomweb:/dental-samples/bitewing-right.dcm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "StudyInstanceUID": "1.2.826.0.1.3680043.10.1338.2.20251112",
+      "StudyDescription": "Prior Panoramic",
+      "StudyDate": "20251112",
+      "StudyTime": "093000",
+      "PatientName": "John Doe",
+      "PatientID": "DEN-000142",
+      "AccessionNumber": "DENT-20251112",
+      "Modalities": "PX",
+      "NumInstances": 1,
+      "series": [
+        {
+          "SeriesInstanceUID": "1.2.826.0.1.3680043.8.498.65064211070833945720853008393204766848",
+          "SeriesNumber": 1,
+          "SeriesDescription": "Panoramic (prior)",
+          "Modality": "PX",
+          "instances": [
+            {
+              "metadata": {
+                "SOPInstanceUID": "1.2.826.0.1.3680043.8.498.37847343001911653276407834545233298291",
+                "SOPClassUID": "1.2.840.10008.5.1.4.1.1.7",
+                "SeriesInstanceUID": "1.2.826.0.1.3680043.8.498.65064211070833945720853008393204766848",
+                "StudyInstanceUID": "1.2.826.0.1.3680043.10.1338.2.20251112",
+                "PatientName": "John Doe",
+                "PatientID": "DEN-000142",
+                "PatientBirthDate": "19890214",
+                "PatientSex": "M",
+                "StudyDate": "20251112",
+                "StudyDescription": "Prior Panoramic",
+                "Modality": "PX",
+                "SeriesNumber": 1,
+                "SeriesDescription": "Panoramic (prior)",
+                "InstanceNumber": 1,
+                "Rows": 382,
+                "Columns": 813,
+                "SamplesPerPixel": 1,
+                "PhotometricInterpretation": "MONOCHROME2",
+                "BitsAllocated": 8,
+                "BitsStored": 8,
+                "HighBit": 7,
+                "PixelRepresentation": 0,
+                "PixelSpacing": [
+                  0.143,
+                  0.143
+                ],
+                "ImagerPixelSpacing": [
+                  0.143,
+                  0.143
+                ],
+                "WindowCenter": 128,
+                "WindowWidth": 256,
+                "RescaleIntercept": 0,
+                "RescaleSlope": 1
+              },
+              "url": "dicomweb:/dental-samples/panoramic-prior.dcm"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

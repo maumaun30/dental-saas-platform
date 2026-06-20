@@ -1,0 +1,46 @@
+# One-command deployment of the OHIF Dental Mode stack.
+#
+#   JWT_SECRET=$(openssl rand -hex 32) docker compose up --build
+#
+# Then open http://localhost:8080  (demo login: dentist@demo.com / demo1234).
+#
+# Three services behind a single origin:
+#   proxy    (nginx)  -> serves the OHIF SPA and proxies /api to the backend
+#   frontend (OHIF)   -> the customized OHIF Viewer (built from ./Viewers)
+#   backend  (Node)   -> JWT auth + viewer-state + measurements API
+#
+# Because everything is one origin, the dental API client's same-origin "/api"
+# fallback works out of the box — no build-time API URL needed.
+services:
+  backend:
+    build: ./backend
+    environment:
+      # IMPORTANT: always override JWT_SECRET in a real deployment.
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
+      CORS_ORIGIN: ${CORS_ORIGIN:-*}
+      SEED_DEMO_USER: "true"
+    volumes:
+      - backend-data:/app/data
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./Viewers
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  proxy:
+    image: nginx:1.27-alpine
+    depends_on:
+      - frontend
+      - backend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./deploy/proxy.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
+
+volumes:
+  backend-data:

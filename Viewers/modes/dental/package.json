@@ -1,0 +1,25 @@
+{
+  "name": "@ohif/mode-dental",
+  "version": "3.12.4",
+  "description": "Dental Mode: dental-themed OHIF workspace with a 2x2 hanging protocol, practice header, tooth selector and the dental measurements palette.",
+  "author": "Dental SaaS",
+  "license": "MIT",
+  "main": "src/index.tsx",
+  "module": "src/index.tsx",
+  "engines": {
+    "node": ">=14"
+  },
+  "keywords": [
+    "ohif-mode"
+  ],
+  "peerDependencies": {
+    "@ohif/core": "3.12.4",
+    "@ohif/extension-cornerstone": "3.12.4",
+    "@ohif/extension-default": "3.12.4",
+    "@ohif/extension-dental": "3.12.4",
+    "@ohif/mode-basic": "3.12.4"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.28.2"
+  }
+}
