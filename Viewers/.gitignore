@@ -19,6 +19,7 @@ playwright-report/
 .yalc
 yalc.lock
 *.dcm
+!platform/app/public/dental-samples/*.dcm
 # Logging, System files, misc.
 .idea/
 .npm
