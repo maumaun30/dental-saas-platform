@@ -80,6 +80,10 @@ module.exports = (env, argv, { SRC_DIR, ENTRY }) => {
       // clean: true,
       publicPath: '/',
     },
+    node: {
+      __filename: false,
+      __dirname: false,
+    },
     context: SRC_DIR,
     stats: {
       colors: true,
