@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: dental-backend
+    runtime: docker
+    plan: free
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /api/health
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGIN
+        value: "*"
+      - key: SEED_DEMO_USER
+        value: "true"
+
+  - type: web
+    name: dental-frontend
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Viewers/Dockerfile
+    dockerContext: ./Viewers

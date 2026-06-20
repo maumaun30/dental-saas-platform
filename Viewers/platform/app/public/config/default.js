@@ -1,5 +1,9 @@
 /** @type {AppTypes.Config} */
 
+if (typeof window !== 'undefined' && window.location.hostname.endsWith('.onrender.com')) {
+  window.__DENTAL_API__ = 'https://REPLACE-WITH-BACKEND-URL.onrender.com/api';
+}
+
 window.config = {
   name: 'config/default.js',
   routerBasename: null,
