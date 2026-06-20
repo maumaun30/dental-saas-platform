@@ -1,7 +1,7 @@
 /** @type {AppTypes.Config} */
 
 if (typeof window !== 'undefined' && window.location.hostname.endsWith('.onrender.com')) {
-  window.__DENTAL_API__ = 'https://REPLACE-WITH-BACKEND-URL.onrender.com/api';
+  window.__DENTAL_API__ = 'https://dental-backend-xt4q.onrender.com/api';
 }
 
 window.config = {
