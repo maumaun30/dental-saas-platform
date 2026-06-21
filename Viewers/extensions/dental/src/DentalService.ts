@@ -51,6 +51,7 @@ class DentalService {
   private createdAt = new Map<string, string>();
   private saveTimer: any = null;
   private bound = false;
+  private restored: DentalMeasurement[] = [];
 
   subscribe(event: string, cb: (p: any) => void) {
     if (!this.listeners.has(event)) {
@@ -165,29 +166,33 @@ class DentalService {
   }
 
   getDentalMeasurements(studyUID?: string): DentalMeasurement[] {
-    if (!this.measurementService) {
-      return [];
-    }
-    const all = this.measurementService.getMeasurements() || [];
-    return all
-      .filter((m: any) => m.toolName === 'Length' || m.toolName === 'Angle')
-      .map((m: any) => {
-        const side = this.sideData.get(m.uid);
-        const { value, unit, text } = this.parseValue(m);
-        return {
-          uid: m.uid,
-          label: side?.label || m.label || m.toolName,
-          toolName: m.toolName,
-          value,
-          unit,
-          displayText: text,
-          tooth: side?.tooth ?? null,
-          numberingSystem: side?.numberingSystem ?? this.state.numberingSystem,
-          presetId: side?.presetId ?? null,
-          studyUID: m.referenceStudyUID || this.state.activeStudyUID || null,
-          createdAt: this.createdAt.get(m.uid) || new Date().toISOString(),
-        } as DentalMeasurement;
-      });
+    const live: DentalMeasurement[] = !this.measurementService
+      ? []
+      : (this.measurementService.getMeasurements() || [])
+          .filter((m: any) => m.toolName === 'Length' || m.toolName === 'Angle')
+          .map((m: any) => {
+            const side = this.sideData.get(m.uid);
+            const { value, unit, text } = this.parseValue(m);
+            return {
+              uid: m.uid,
+              label: side?.label || m.label || m.toolName,
+              toolName: m.toolName,
+              value,
+              unit,
+              displayText: text,
+              tooth: side?.tooth ?? null,
+              numberingSystem: side?.numberingSystem ?? this.state.numberingSystem,
+              presetId: side?.presetId ?? null,
+              studyUID: m.referenceStudyUID || this.state.activeStudyUID || null,
+              createdAt: this.createdAt.get(m.uid) || new Date().toISOString(),
+            } as DentalMeasurement;
+          });
+
+    // Merge in measurements restored from the backend that aren't currently on canvas.
+    const liveIds = new Set(live.map(m => m.uid));
+    const restored = this.restored.filter(m => !liveIds.has(m.uid));
+    const merged = [...live, ...restored];
+    return studyUID ? merged.filter(m => !m.studyUID || m.studyUID === studyUID) : merged;
   }
 
   removeMeasurement(uid: string) {
@@ -197,6 +202,7 @@ class DentalService {
       void 0;
     }
     this.sideData.delete(uid);
+    this.restored = this.restored.filter(m => m.uid !== uid);
     this.emit(this.EVENTS.MEASUREMENTS_CHANGED);
   }
 
@@ -207,7 +213,23 @@ class DentalService {
       void 0;
     }
     this.sideData.clear();
+    this.restored = [];
     this.emit(this.EVENTS.MEASUREMENTS_CHANGED);
+  }
+
+  getPatientName(): string | null {
+    try {
+      const sets = this.servicesManager?.services?.displaySetService?.getActiveDisplaySets?.() || [];
+      for (const ds of sets) {
+        const pn = ds?.instances?.[0]?.PatientName ?? ds?.PatientName;
+        if (pn) {
+          return typeof pn === 'string' ? pn : pn.Alphabetic || String(pn);
+        }
+      }
+    } catch {
+      void 0;
+    }
+    return null;
   }
 
   buildExportPayload(studyUID?: string) {
@@ -217,6 +239,7 @@ class DentalService {
       schema: 'dental-measurements/v1',
       exportedAt: new Date().toISOString(),
       studyUID: studyUID || this.state.activeStudyUID,
+      patient: this.getPatientName(),
       practice: user?.practiceName,
       clinician: user?.name,
       count: items.length,
@@ -262,6 +285,31 @@ class DentalService {
       }
     } catch (e) {
       console.warn('[DentalService] could not load viewer state', e);
+    }
+  }
+
+  async loadMeasurements(studyUID: string) {
+    if (!studyUID) {
+      return;
+    }
+    try {
+      const { measurements } = await dentalApi.listMeasurements(studyUID);
+      this.restored = (measurements || []).map((m: any) => ({
+        uid: m.id,
+        label: m.label,
+        toolName: m.toolName || 'Length',
+        value: typeof m.value === 'number' ? m.value : Number(m.value) || 0,
+        unit: m.unit || '',
+        displayText: `${m.value ?? ''} ${m.unit ?? ''}`.trim(),
+        tooth: m.tooth ?? null,
+        numberingSystem: m.numberingSystem || this.state.numberingSystem,
+        presetId: m.presetId ?? null,
+        studyUID: m.studyUID || studyUID,
+        createdAt: m.createdAt || new Date().toISOString(),
+      })) as DentalMeasurement[];
+      this.emit(this.EVENTS.MEASUREMENTS_CHANGED);
+    } catch (e) {
+      console.warn('[DentalService] could not load measurements', e);
     }
   }
 

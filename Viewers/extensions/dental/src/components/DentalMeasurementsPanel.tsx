@@ -23,12 +23,17 @@ export function DentalMeasurementsPanel() {
   const [query, setQuery] = useState('');
   const [toast, setToast] = useState<string | null>(null);
 
+  const loadedStudyRef = React.useRef<string | null>(null);
   useEffect(() => {
     const { displaySetService } = servicesManager.services;
     const active = displaySetService?.getActiveDisplaySets?.() || [];
     const studyUID = active[0]?.StudyInstanceUID || measurements[0]?.studyUID || null;
     if (studyUID) {
       dentalService.setState({ activeStudyUID: studyUID }, false);
+      if (loadedStudyRef.current !== studyUID) {
+        loadedStudyRef.current = studyUID;
+        dentalService.loadMeasurements(studyUID);
+      }
     }
   }, [servicesManager, measurements]);
 

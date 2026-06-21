@@ -16,6 +16,7 @@ function sanitize(m, userId) {
     value: typeof m.value === 'number' ? m.value : Number(m.value) || 0,
     unit: m.unit || '',
     tooth: m.tooth ?? null,
+    numberingSystem: m.numberingSystem || null,
     toolName: m.toolName || null,
     annotationUID: m.annotationUID || null,
     data: m.data ?? null,
