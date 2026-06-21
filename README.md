@@ -129,4 +129,4 @@ For a split-origin deployment, build the two images separately and point the fro
 
 ## Demo
 
-Demo video: _link to be added._
+Demo video: https://drive.google.com/file/d/1yoDTixk7sY-DwLequEpBhTSydrOna3kA/view?usp=sharing
